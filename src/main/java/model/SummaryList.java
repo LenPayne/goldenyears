@@ -19,6 +19,7 @@ import au.com.bytecode.opencsv.CSV;
 import au.com.bytecode.opencsv.CSVReadProc;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -36,7 +37,7 @@ public class SummaryList {
 
     public SummaryList() {
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(CSV_FILENAME)));
-        CSV csv = CSV.separator(',').charset("UTF-8").skipLines(1).quote('"').create();
+        CSV csv = CSV.separator(',').charset(StandardCharsets.US_ASCII).skipLines(1).quote('"').create();
         csv.read(inputFile, new CSVReadProc() {
 
             @Override
