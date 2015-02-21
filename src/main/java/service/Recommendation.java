@@ -28,7 +28,7 @@ import model.SummaryList;
 public class Recommendation {
     private final SummaryList summaryList = new SummaryList();
     @GET
-    @Produces("application/json")
+    @Produces("application/json; charset=UTF-8")
     public String getAll() {
         return summaryList.toJSONString();
     }

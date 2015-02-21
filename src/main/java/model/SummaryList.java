@@ -37,7 +37,7 @@ public class SummaryList {
 
     public SummaryList() {
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(CSV_FILENAME)));
-        CSV csv = CSV.separator(',').charset(StandardCharsets.US_ASCII).skipLines(1).quote('"').create();
+        CSV csv = CSV.separator(',').charset(StandardCharsets.UTF_8).skipLines(1).quote('"').create();
         csv.read(inputFile, new CSVReadProc() {
 
             @Override
