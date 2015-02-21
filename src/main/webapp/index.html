@@ -16,7 +16,14 @@
         <section class='container' ng-controller="RecCtrl">
             <input ng-model="query" />
             <table class="table">
-                <tr ng-repeat="city in cities | filter:query">
+                <tr>
+                    <th><span ng-click="predicate = 'city'; reverse=!reverse">City</span></th>
+                    <th><span ng-click="predicate = 'health'; reverse=!reverse">Health</span></th>
+                    <th><span ng-click="predicate = 'stress'; reverse=!reverse">Stress</span></th>
+                    <th><span ng-click="predicate = 'expenses'; reverse=!reverse">Expenses</span></th>
+                    <th><span ng-click="predicate = 'historicalExpenses'; reverse=!reverse">Historical Data</span></th>
+                </tr>
+                <tr ng-repeat="city in cities | filter:query | orderBy:predicate:reverse">
                     <th>{{city.city}}</th>                    
                     <td>{{city.health}}</td>
                     <td>{{city.stress}}</td>
