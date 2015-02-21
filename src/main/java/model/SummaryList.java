@@ -19,12 +19,14 @@ import au.com.bytecode.opencsv.CSV;
 import au.com.bytecode.opencsv.CSVReadProc;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 import org.json.simple.JSONArray;
 
 /**
  *
  * @author Len Payne <len.payne@lambtoncollege.ca>
  */
+@ApplicationScoped
 public class SummaryList {
 
     private final List<Summary> summaryList = new ArrayList<>();
