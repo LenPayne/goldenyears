@@ -17,11 +17,13 @@ package model;
 
 import au.com.bytecode.opencsv.CSV;
 import au.com.bytecode.opencsv.CSVReadProc;
+import com.sun.istack.internal.logging.Logger;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.enterprise.context.ApplicationScoped;
 import org.json.simple.JSONArray;
 
@@ -42,6 +44,7 @@ public class SummaryList {
 
             @Override
             public void procRow(int i, String... strings) {
+                Logger.getLogger(getClass()).log(Level.INFO, strings[0]);
                 summaryList.add(new Summary(
                         strings[0].trim(),
                         Double.parseDouble(strings[1].trim()),
