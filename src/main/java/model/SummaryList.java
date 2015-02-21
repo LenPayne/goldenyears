@@ -46,7 +46,7 @@ public class SummaryList {
                         Double.parseDouble(strings[1].trim()),
                         Double.parseDouble(strings[2].trim()),
                         Double.parseDouble(strings[3].trim()),
-                        Double.parseDouble(strings[4].trim())
+                        (strings[4].isEmpty()) ? -1 : Double.parseDouble(strings[4].trim())
                 ));
             }
         });
