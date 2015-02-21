@@ -18,7 +18,7 @@
 var recApp = angular.module('recApp', []);
 
 recApp.controller('RecCtrl', function ($scope, $http) {
-  $http.get('q/recommendations').success(function(data) {
+  $http.get('q/recommendation').success(function(data) {
       $scope.cities = data;
   });
 });
