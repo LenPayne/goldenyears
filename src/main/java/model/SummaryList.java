@@ -17,6 +17,8 @@ package model;
 
 import au.com.bytecode.opencsv.CSV;
 import au.com.bytecode.opencsv.CSVReadProc;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -33,8 +35,9 @@ public class SummaryList {
     private final String CSV_FILENAME = "/CODE-Dataset.csv";
 
     public SummaryList() {
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(CSV_FILENAME)));
         CSV csv = CSV.separator(',').charset("UTF-8").quote('"').create();
-        csv.read(CSV_FILENAME, new CSVReadProc() {
+        csv.read(inputFile, new CSVReadProc() {
 
             @Override
             public void procRow(int i, String... strings) {
