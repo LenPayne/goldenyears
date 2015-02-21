@@ -22,6 +22,7 @@ import org.json.simple.JSONObject;
  * @author Len Payne <len.payne@lambtoncollege.ca>
  */
 public class Summary {
+
     private String city = "";
     private double health = 0;
     private double stress = 0;
@@ -78,7 +79,7 @@ public class Summary {
     public void setHistoricalExpenses(double historicalExpenses) {
         this.historicalExpenses = historicalExpenses;
     }
-    
+
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json.put("city", city);
@@ -88,9 +89,9 @@ public class Summary {
         json.put("historicalExpenses", historicalExpenses);
         return json;
     }
-    
+
     public String toJSONString() {
         return toJSON().toJSONString();
     }
-    
+
 }
