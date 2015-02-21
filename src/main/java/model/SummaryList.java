@@ -30,7 +30,7 @@ import org.json.simple.JSONArray;
 public class SummaryList {
 
     private final List<Summary> summaryList = new ArrayList<>();
-    private final String CSV_FILENAME = "CODE-Dataset.csv";
+    private final String CSV_FILENAME = "/CODE-Dataset.csv";
 
     public SummaryList() {
         CSV csv = CSV.separator(',').charset("UTF-8").quote('"').create();
