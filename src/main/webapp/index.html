@@ -17,13 +17,15 @@
 
         <section class='container' ng-controller="RecCtrl">
             <div class="jumbotron">
-                <h1>You should retire in {{cities[0].city}}!</h1>
-                <p>{{cities[0].health}}% of the population reported very good or 
-                    excellent health, {{100 - cities[0].stress}}% of the population 
+                <h1>You should retire in {{(cities|filter:query)[0].city}}!</h1>
+                <p>{{(cities|filter:query)[0].health}}% of the population reported very good or 
+                    excellent health, {{100 - (cities|filter:query)[0].stress}}% of the population 
                     reported not having a lot of stress, and the average household 
-                    spending is only ${{cities[0].cost}} per year.</p>
+                    spending is only ${{(cities|filter:query)[0].expenses}} per year.</p>
             </div>
-            <button class="btn btn-default" data-toggle="collapse" data-target="#options">Personalize Results</button>            
+            <div class="row">
+                <button class="btn btn-default" data-toggle="collapse" data-target="#options">Personalize Results</button>            
+            </div>
             <div id="options" class="collapse form-horizontal">
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="query">Filter</label> 
@@ -52,8 +54,9 @@
                     </div>
                 </div>
             </div>
-            
-            <button class="btn btn-default" data-toggle="collapse" data-target="#resultList" ng-click="expand = !expand">{{expand|expandFilter}}</button>
+            <div class="row">
+                <button class="btn btn-default" data-toggle="collapse" data-target="#resultList" ng-click="expand = !expand">{{expand|expandFilter}}</button>
+            </div>
             <div id="resultList" class="collapse">
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="city in cities| filter:query">
