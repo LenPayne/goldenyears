@@ -36,7 +36,7 @@
             <div class="jumbotron">
                 <h2>Where Should You Retire in your Golden Years?!</h2>
                 <div class="row text-center" ng-hide="loaded"><img src="images/ajax-loader.gif" alt="Loading..."/></div>
-                <h1 ng-hide="!loaded"><span class="flaticon-elderly1"></span> You should retire in {{(cities|filter:query)[0].city}}!</h1>
+                <h1 ng-hide="!loaded">You should retire in {{(cities|filter:query)[0].city}}! <span class="flaticon-elderly1"></span></h1>
                 <p ng-hide="!loaded">{{(cities|filter:query)[0].health}}% of the population reported very good or 
                     excellent health, {{100 - (cities | filter:query)[0].stress}}% of the population 
                     reported not having a lot of stress, and the average household 
