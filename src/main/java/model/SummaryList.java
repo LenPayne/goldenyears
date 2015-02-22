@@ -54,7 +54,7 @@ public class SummaryList {
                 ));
             }
         });
-        
+
     }
 
     public JSONArray toJSON() {
@@ -69,13 +69,14 @@ public class SummaryList {
         summaryList.sort(new Weighted());
         return toJSON().toJSONString();
     }
-    
+
     public String toJSONString(int stress, int health, int cost) {
         summaryList.sort(new Weighted(stress, health, cost));
         return toJSON().toJSONString();
     }
 
     private class Weighted implements Comparator<Summary> {
+
         private final double STRESS_MAX = 37;
         private final double STRESS_MID = 24; // (MAX + MIN) / 2
         private final double STRESS_MIN = 10;
@@ -85,7 +86,7 @@ public class SummaryList {
         private final double COST_MAX = 102000;
         private final double COST_MID = 83500;
         private final double COST_MIN = 65000;
-        
+
         private int stressWeight;
         private int healthWeight;
         private int costWeight;
@@ -103,18 +104,19 @@ public class SummaryList {
         }
 
         private double getWeight(double max, double min, double val) {
-            return (val - min)/(max - min) * 2 - 1;
+            return (val - min) / (max - min) * 2 - 1;
         }
+
         @Override
         public int compare(Summary o1, Summary o2) {
-            int o1Weighted = (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o1.getStress()) * stressWeight / 100)
-                    + (int) Math.round(getWeight(HEALTH_MAX, HEALTH_MIN, o1.getHealth()) * healthWeight / 100)
-                    + (int) Math.round(getWeight(COST_MAX, COST_MIN, o1.getExpenses()) * costWeight / 100);
-            int o2Weighted = (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o2.getStress()) * stressWeight / 100)
-                    + (int) Math.round(getWeight(HEALTH_MAX, HEALTH_MIN, o2.getHealth()) * healthWeight / 100)
-                    + (int) Math.round(getWeight(COST_MAX, COST_MIN, o2.getExpenses()) * costWeight / 100);
+            int o1Weighted = (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o1.getStress()) * stressWeight)
+                    + (int) Math.round(getWeight(HEALTH_MAX, HEALTH_MIN, o1.getHealth()) * healthWeight)
+                    + (int) Math.round(getWeight(COST_MAX, COST_MIN, o1.getExpenses()) * costWeight);
+            int o2Weighted = (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o2.getStress()) * stressWeight)
+                    + (int) Math.round(getWeight(HEALTH_MAX, HEALTH_MIN, o2.getHealth()) * healthWeight)
+                    + (int) Math.round(getWeight(COST_MAX, COST_MIN, o2.getExpenses()) * costWeight);
             String output = String.format("%s: %d vs %s: %d", o1.getCity(), o1Weighted, o2.getCity(), o2Weighted);
-            Logger.getLogger(getClass().getName()).log(Level.INFO, output);           
+            Logger.getLogger(getClass().getName()).log(Level.INFO, output);
             return o1Weighted - o2Weighted;
         }
 
