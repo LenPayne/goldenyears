@@ -24,9 +24,13 @@
                     spending is only ${{(cities|filter:query)[0].expenses}} per year.</p>
             </div>
             <div class="col-sm-12">
-                <div class="btn-group btn-group-justified">
-                    <button class="btn btn-default" data-toggle="collapse" data-target="#options">Personalize Results</button>   
-                    <button class="btn btn-default" data-toggle="collapse" data-target="#resultList" ng-click="expand = !expand"><span ng-class="expand | glyphFilter"></span>{{expand|expandFilter}}</button>
+                <div class="btn-group btn-group-justified" role="group">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default" data-toggle="collapse" data-target="#options">Personalize Results</button>   
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default" data-toggle="collapse" data-target="#resultList" ng-click="expand = !expand"><span ng-class="expand | glyphFilter"></span>{{expand|expandFilter}}</button>
+                    </div>
                 </div>
             </div>
             <div id="options" class="collapse panel panel-default">
