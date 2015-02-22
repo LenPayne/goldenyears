@@ -98,10 +98,10 @@ angular.module('ui.bootstrap-slider', [])
                     // check if slider jQuery plugin exists
                     if( $.fn.slider ) {
                         // adding methods to jQuery slider plugin prototype
-                        $.fn.slider.Constructor.prototype.disable = function () {
+                        $.fn.slider.constructor.prototype.disable = function () {
                             this.picker.off();
                         };
-                        $.fn.slider.Constructor.prototype.enable = function () {
+                        $.fn.slider.constructor.prototype.enable = function () {
                             this.picker.on();
                         };
 
