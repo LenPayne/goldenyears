@@ -19,22 +19,17 @@
             <p>Leisure <input type="range" min="0" max="100" ng-model="stress" /></p>
             <p>Affordability <input type="range" min="0" max="100" ng-model="cost" /></p>
             <p><button ng-click="refresh()">Refresh Recommendations</button></p>
-            <table class="table">
-                <tr>
-                    <th><span ng-click="predicate = 'city'; reverse=!reverse">City</span></th>
-                    <th><span ng-click="predicate = 'health'; reverse=!reverse">Health</span></th>
-                    <th><span ng-click="predicate = 'stress'; reverse=!reverse">Stress</span></th>
-                    <th><span ng-click="predicate = 'expenses'; reverse=!reverse">Expenses</span></th>
-                    <th><span ng-click="predicate = 'historicalExpenses'; reverse=!reverse">Historical Data</span></th>
-                </tr>
-                <tr ng-repeat="city in cities | filter:query">
-                    <th>{{city.city}}</th>                    
-                    <td>{{city.health}}</td>
-                    <td>{{city.stress}}</td>
-                    <td>{{city.expenses}}</td>
-                    <td>{{city.historicalExpenses}}</td>
-                </tr>
-            </table>
+            <ul>
+                <li ng-repeat="city in cities | filter:query">
+                    <h1>{{city.city}}</h1>                    
+                    <span>Health: {{city.health}}%</span> &bull;
+                    <span>Leisure: {{100 - city.stress}}%</span> &bull;
+                    <span>Affordability: ${{city.expenses}}</span>
+                </li>
+            </ul>
+            <p><b>Health</b> as Highest Percent of Population Reporting General Health as Excellent or Great</p>
+            <p><b>Leisure</b> as Highest Percent of Population Not Reporting Life Stress as Quite a Lot</p>
+            <p><b>Affordability</b> as Lowest Total Expenditures for Survey of Household Spending</p>
         </section>
 
 
