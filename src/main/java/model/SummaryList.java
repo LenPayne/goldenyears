@@ -76,9 +76,15 @@ public class SummaryList {
     }
 
     private class Weighted implements Comparator<Summary> {
+        private final double STRESS_MAX = 37;
         private final double STRESS_MID = 24; // (MAX + MIN) / 2
+        private final double STRESS_MIN = 10;
+        private final double HEALTH_MAX = 67;
         private final double HEALTH_MID = 55;
+        private final double HEALTH_MIN = 43;
+        private final double COST_MAX = 102000;
         private final double COST_MID = 83500;
+        private final double COST_MIN = 65000;
         
         private int stressWeight;
         private int healthWeight;
@@ -96,14 +102,17 @@ public class SummaryList {
             costWeight = c;
         }
 
+        private double getWeight(double max, double min, double val) {
+            return (val - min)/(max - min) * 2 - 1;
+        }
         @Override
         public int compare(Summary o1, Summary o2) {
-            int o1Weighted = (int) Math.round((o1.getStress() - STRESS_MID) * stressWeight / 100)
-                    + (int) Math.round((o1.getHealth() - HEALTH_MID) * healthWeight / 100)
-                    + (int) Math.round((o1.getExpenses() - COST_MID) * costWeight / 100);
-            int o2Weighted = (int) Math.round((o2.getStress() - STRESS_MID) * stressWeight / 100)
-                    + (int) Math.round((o2.getHealth() - HEALTH_MID) * healthWeight / 100)
-                    + (int) Math.round((o2.getExpenses() - COST_MID) * costWeight / 100);
+            int o1Weighted = (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o1.getStress()) * stressWeight / 100)
+                    + (int) Math.round(getWeight(HEALTH_MAX, HEALTH_MIN, o1.getHealth()) * healthWeight / 100)
+                    + (int) Math.round(getWeight(COST_MAX, COST_MIN, o1.getExpenses()) * costWeight / 100);
+            int o2Weighted = (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o2.getStress()) * stressWeight / 100)
+                    + (int) Math.round(getWeight(HEALTH_MAX, HEALTH_MIN, o2.getHealth()) * healthWeight / 100)
+                    + (int) Math.round(getWeight(COST_MAX, COST_MIN, o2.getExpenses()) * costWeight / 100);
             String output = String.format("%s: %d vs %s: %d", o1.getCity(), o1Weighted, o2.getCity(), o2Weighted);
             Logger.getLogger(getClass().getName()).log(Level.INFO, output);           
             return o1Weighted - o2Weighted;
