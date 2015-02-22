@@ -39,7 +39,7 @@
             </div>
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="city in cities| filter:query">
-                    <h1>{{city.city}}</h1>                    
+                    <h1 class="col-sm-12">{{city.city}}</h1>                    
                     <div>
                         <div class="col-sm-4">Health: {{city.health}}%</div>
                         <div class="col-sm-4">Leisure: {{100 - city.stress}}%</div>
