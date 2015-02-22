@@ -45,7 +45,6 @@ public class SummaryList {
 
             @Override
             public void procRow(int i, String... strings) {
-                Logger.getLogger(getClass().getName()).log(Level.INFO, strings[0]);
                 summaryList.add(new Summary(
                         strings[0].trim(),
                         Double.parseDouble(strings[1].trim()),
@@ -105,6 +104,8 @@ public class SummaryList {
             int o2Weighted = (int) Math.round((o2.getStress() - STRESS_MID) * stressWeight / 100)
                     + (int) Math.round((o2.getHealth() - HEALTH_MID) * healthWeight / 100)
                     + (int) Math.round((o2.getExpenses() - COST_MID) * costWeight / 100);
+            String output = String.format("%s: %d vs %s: %d", o1.getCity(), o1Weighted, o2.getCity(), o2Weighted);
+            Logger.getLogger(getClass().getName()).log(Level.INFO, output);           
             return o1Weighted - o2Weighted;
         }
 
