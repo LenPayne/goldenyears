@@ -19,27 +19,34 @@
             <div class="form-horizontal">
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="query">Filter</label> 
-                    <input class="col-sm-10 form-control" id="query" ng-model="query" />
+                    <input class="col-sm-10" id="query" ng-model="query" />
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="health">Health</label> 
-                    <slider class="col-sm-10 form-control" id="health" min="0" max="100" ng-model="health" />
+                    <slider class="col-sm-10" id="health" min="0" max="100" ng-model="health" />
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="stress">Leisure</label> 
-                    <slider class="col-sm-10 form-control" id="stress" min="0" max="100" ng-model="stress" />
+                    <slider class="col-sm-10" id="stress" min="0" max="100" ng-model="stress" />
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="cost">Affordability</label> 
-                    <slider class="col-sm-10 form-control" id="cost" min="0" max="100" ng-model="cost" />
+                    <slider class="col-sm-10" id="cost" min="0" max="100" ng-model="cost" />
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10 form-control"> 
-                        <button ng-click="refresh()">Refresh Recommendations</button>
+                    <div class="col-sm-offset-2 col-sm-10"> 
+                        <button class="btn btn-primary" ng-click="refresh()">Refresh Recommendations</button>
                     </div>
                 </div>
             </div>
-            <ul class="list-group">
+            <div><h1>You should retire in {{cities[0].city}}!</h1>
+                <p>{{cities[0].health}}% of the population reported very good or 
+                    excellent health, {{100 - cities[0].stress}}% of the population 
+                    reported not having a lot of stress, and the average household 
+                    spending is only ${{cities[0].cost}} per year.</p>
+            </div>
+            <button class="btn btn-default" data-toggle="collapse" data-target="#resultList">See Complete List</button>
+            <ul id="resultList" class="collapse list-group">
                 <li class="list-group-item" ng-repeat="city in cities| filter:query">
                     <h1>{{city.city}}</h1>                    
                     <div><small>
