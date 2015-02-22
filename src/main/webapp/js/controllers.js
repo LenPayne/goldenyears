@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var EXPAND_TEXT = "<span class='glyphicon glyphicon-chevron-down'></span> See Complete List";
-var HIDE_TEXT = "<span class='glyphicon glyphicon-chevron-up'></span> Hide Complete List";
+var EXPAND_TEXT = "Show Complete List";
+var HIDE_TEXT = "Hide Complete List";
 
 var recApp = angular.module('recApp', ['ui.bootstrap-slider']);
 
