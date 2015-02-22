@@ -21,6 +21,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,6 +55,8 @@ public class SummaryList {
                 ));
             }
         });
+
+        summaryList.sort(new Weighted());
     }
 
     public JSONArray toJSON() {
@@ -66,5 +69,39 @@ public class SummaryList {
 
     public String toJSONString() {
         return toJSON().toJSONString();
+    }
+
+    private class Weighted implements Comparator<Summary> {
+        private final double STRESS_MID = 24; // (MAX + MIN) / 2
+        private final double HEALTH_MID = 55;
+        private final double COST_MID = 83500;
+        
+        private int stressWeight;
+        private int healthWeight;
+        private int costWeight;
+
+        public Weighted() {
+            stressWeight = 33;
+            healthWeight = 33;
+            costWeight = 33;
+        }
+
+        public Weighted(int s, int h, int c) {
+            stressWeight = s;
+            healthWeight = h;
+            costWeight = c;
+        }
+
+        @Override
+        public int compare(Summary o1, Summary o2) {
+            int o1Weighted = (int) Math.round((o1.getStress() - STRESS_MID) * stressWeight / 100)
+                    + (int) Math.round((o1.getHealth() - HEALTH_MID) * healthWeight / 100)
+                    + (int) Math.round((o1.getExpenses() - COST_MID) * costWeight / 100);
+            int o2Weighted = (int) Math.round((o2.getStress() - STRESS_MID) * stressWeight / 100)
+                    + (int) Math.round((o2.getHealth() - HEALTH_MID) * healthWeight / 100)
+                    + (int) Math.round((o2.getExpenses() - COST_MID) * costWeight / 100);
+            return o1Weighted - o2Weighted;
+        }
+
     }
 }
