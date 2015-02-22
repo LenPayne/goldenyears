@@ -109,12 +109,12 @@ public class SummaryList {
 
         @Override
         public int compare(Summary o1, Summary o2) {
-            int o1Weighted = (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o1.getStress()) * stressWeight)
+            int o1Weighted = -1 * (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o1.getStress()) * stressWeight)
                     + (int) Math.round(getWeight(HEALTH_MAX, HEALTH_MIN, o1.getHealth()) * healthWeight)
-                    + (int) Math.round(getWeight(COST_MAX, COST_MIN, o1.getExpenses()) * costWeight);
-            int o2Weighted = (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o2.getStress()) * stressWeight)
+                    + -1 * (int) Math.round(getWeight(COST_MAX, COST_MIN, o1.getExpenses()) * costWeight);
+            int o2Weighted = -1 * (int) Math.round(getWeight(STRESS_MAX, STRESS_MIN, o2.getStress()) * stressWeight)
                     + (int) Math.round(getWeight(HEALTH_MAX, HEALTH_MIN, o2.getHealth()) * healthWeight)
-                    + (int) Math.round(getWeight(COST_MAX, COST_MIN, o2.getExpenses()) * costWeight);
+                    + -1 * (int) Math.round(getWeight(COST_MAX, COST_MIN, o2.getExpenses()) * costWeight);
             String output = String.format("%s: %d vs %s: %d", o1.getCity(), o1Weighted, o2.getCity(), o2Weighted);
             Logger.getLogger(getClass().getName()).log(Level.INFO, output);
             return o1Weighted - o2Weighted;
