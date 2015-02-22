@@ -55,8 +55,7 @@ public class SummaryList {
                 ));
             }
         });
-
-        summaryList.sort(new Weighted());
+        
     }
 
     public JSONArray toJSON() {
@@ -68,6 +67,12 @@ public class SummaryList {
     }
 
     public String toJSONString() {
+        summaryList.sort(new Weighted());
+        return toJSON().toJSONString();
+    }
+    
+    public String toJSONString(int stress, int health, int cost) {
+        summaryList.sort(new Weighted(stress, health, cost));
         return toJSON().toJSONString();
     }
 
