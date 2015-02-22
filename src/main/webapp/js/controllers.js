@@ -23,7 +23,7 @@ recApp.controller('RecCtrl', function ($scope, $http) {
     $scope.expand = false;
     $scope.stress = 33;
     $scope.health = 33;
-    $scope.cost = 33;    
+    $scope.cost = 33;
     $scope.predicate = '';
     $scope.reverse = false;
     $http.get('q/recommendation').success(function (data) {
@@ -37,9 +37,20 @@ recApp.controller('RecCtrl', function ($scope, $http) {
     };
 });
 
-recApp.filter('expandFilter', function() {
+recApp.filter('expandFilter', function () {
     return function (input) {
-        if (input) return HIDE_TEXT;
-        else return EXPAND_TEXT;
-    }
+        if (input)
+            return HIDE_TEXT;
+        else
+            return EXPAND_TEXT;
+    };
 })
+        .filter('glyphFilter', function () {
+            return function (input) {
+                if (input)
+                    return 'glyphicon glyphicon-chevron-up';
+                else
+                    return 'glyphicon glyphicon-chevron-down';
+            };
+        });
+       

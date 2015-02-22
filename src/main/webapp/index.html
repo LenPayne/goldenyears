@@ -19,46 +19,47 @@
             <div class="jumbotron">
                 <h1>You should retire in {{(cities|filter:query)[0].city}}!</h1>
                 <p>{{(cities|filter:query)[0].health}}% of the population reported very good or 
-                    excellent health, {{100 - (cities|filter:query)[0].stress}}% of the population 
+                    excellent health, {{100 - (cities | filter:query)[0].stress}}% of the population 
                     reported not having a lot of stress, and the average household 
                     spending is only ${{(cities|filter:query)[0].expenses}} per year.</p>
             </div>
-            <div class="row">
-                <button class="btn btn-default" data-toggle="collapse" data-target="#options">Personalize Results</button>            
+            <div class="btn-group">
+                <button class="btn btn-default" data-toggle="collapse" data-target="#options">Personalize Results</button>   
+                <button class="btn btn-default" data-toggle="collapse" data-target="#resultList" ng-click="expand = !expand"><span ng-class="expand | glyphFilter"></span>{{expand|expandFilter}}</button>
             </div>
-            <div id="options" class="collapse form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="query">Filter</label> 
-                    <input class="col-sm-10" id="query" ng-model="query" placeholder="Search for results by criteria, eg- Ontario"/>
-                </div>
-                <div class="col-sm-12">
-                    By default, the recommendation is based on the following equally-weighted 
-                    requirements. Drag the following widgets to change the importance of each 
-                    factor for your preference:
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="health">Health</label> 
-                    <slider class="col-sm-10" tooltip="hide" id="health" min="0" max="100" ng-model="health" />                    
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="stress">Leisure</label> 
-                    <slider class="col-sm-10" tooltip="hide" id="stress" min="0" max="100" ng-model="stress" />
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="cost">Affordability</label> 
-                    <slider class="col-sm-10" tooltip="hide" id="cost" min="0" max="100" ng-model="cost" />
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10"> 
-                        <button class="btn btn-primary" ng-click="refresh()">Refresh Recommendations</button>
+            <div id="options" class="collapse panel panel-default">
+                <div class="horizontal-form panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="query">Filter</label> 
+                        <input class="col-sm-10" id="query" ng-model="query" placeholder="Search for results by criteria, eg- Ontario"/>
+                    </div>
+                    <div class="col-sm-12">
+                        By default, the recommendation is based on the following equally-weighted 
+                        requirements. Drag the following widgets to change the importance of each 
+                        factor for your preference:
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="health">Health</label> 
+                        <slider class="col-sm-10" tooltip="hide" id="health" min="0" max="100" ng-model="health" />                    
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="stress">Leisure</label> 
+                        <slider class="col-sm-10" tooltip="hide" id="stress" min="0" max="100" ng-model="stress" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="cost">Affordability</label> 
+                        <slider class="col-sm-10" tooltip="hide" id="cost" min="0" max="100" ng-model="cost" />
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10"> 
+                            <button class="btn btn-primary" ng-click="refresh()">Refresh Recommendations</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <button class="btn btn-default" data-toggle="collapse" data-target="#resultList" ng-click="expand = !expand">{{expand|expandFilter}}</button>
-            </div>
-            <div id="resultList" class="collapse">
-                <ul class="list-group">
+            <div id="resultList" class="collapse panel panel-default">
+                <div class="panel-heading">Further Recommendations</div>
+                <ul class="list-group panel-body">
                     <li class="list-group-item" ng-repeat="city in cities| filter:query">
                         <h1>{{city.city}}</h1>                    
                         <div><small>
