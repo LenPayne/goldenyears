@@ -39,12 +39,12 @@
             </div>
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="city in cities| filter:query">
-                    <h1 class="col-sm-12">{{city.city}}</h1>                    
-                    <div>
-                        <div class="col-sm-4">Health: {{city.health}}%</div>
-                        <div class="col-sm-4">Leisure: {{100 - city.stress}}%</div>
-                        <div class="col-sm-4">Affordability: ${{city.expenses}}</div>
-                    </div>
+                    <h1>{{city.city}}</h1>                    
+                    <div><small>
+                        <span>Health: {{city.health}}%</span> &bull;
+                        <span>Leisure: {{100 - city.stress}}%</span> &bull;
+                        <span>Affordability: ${{city.expenses}}</span>
+                    </small></div>
                 </li>
             </ul>
             <div class="col-sm-12"><small><b>Health</b> as Highest Percent of Population Reporting General Health as Excellent or Great</small></div>
