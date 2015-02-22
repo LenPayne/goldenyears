@@ -30,9 +30,10 @@
 
         <section class='container' ng-controller="RecCtrl">
             <div class="page-header">
-                <h1><span class="flaticon-elderly1"></span> Golden Years<small>Retirement Destination Recommendations</small></h1>
+                <h1><span class="flaticon-elderly1"></span> Golden Years</h1>
+                <h2><small>Retirement Destination Recommendations</small></h2>
             </div>                
-            <div ng-hide="loaded" class="jumbotron">
+            <div class="jumbotron">
                 <h1>Where Should You Retire in your Golden Years?!</h1>
                 <div class="row text-center" ng-hide="loaded"><img src="images/ajax-loader.gif" alt="Loading..."/></div>
                 <h1 ng-hide="!loaded">You should retire in {{(cities|filter:query)[0].city}}!</h1>
