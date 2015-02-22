@@ -14,22 +14,42 @@
     <body>
 
         <section class='container' ng-controller="RecCtrl">
-            <p>Filter <input ng-model="query" /></p>
-            <p>Health <input type="range" min="0" max="100" ng-model="health" /></p>
-            <p>Leisure <input type="range" min="0" max="100" ng-model="stress" /></p>
-            <p>Affordability <input type="range" min="0" max="100" ng-model="cost" /></p>
-            <p><button ng-click="refresh()">Refresh Recommendations</button></p>
-            <ul>
-                <li ng-repeat="city in cities | filter:query">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="query">Filter</label> 
+                    <input class="col-sm-10" id="query" ng-model="query" />
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="health">Health</label> 
+                    <input class="col-sm-10" id="health" type="range" min="0" max="100" ng-model="health" />
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="stress">Leisure</label> 
+                    <input class="col-sm-10" id="stress" type="range" min="0" max="100" ng-model="stress" />
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="cost">Affordability</label> 
+                    <input class="col-sm-10" id="cost" type="range" min="0" max="100" ng-model="cost" />
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10"> 
+                        <button ng-click="refresh()">Refresh Recommendations</button>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="city in cities| filter:query">
                     <h1>{{city.city}}</h1>                    
-                    <span>Health: {{city.health}}%</span> &bull;
-                    <span>Leisure: {{100 - city.stress}}%</span> &bull;
-                    <span>Affordability: ${{city.expenses}}</span>
+                    <div>
+                        <div class="col-sm-4">Health: {{city.health}}%</div>
+                        <div class="col-sm-4">Leisure: {{100 - city.stress}}%</div>
+                        <div class="col-sm-4">Affordability: ${{city.expenses}}</div>
+                    </div>
                 </li>
             </ul>
-            <p><b>Health</b> as Highest Percent of Population Reporting General Health as Excellent or Great</p>
-            <p><b>Leisure</b> as Highest Percent of Population Not Reporting Life Stress as Quite a Lot</p>
-            <p><b>Affordability</b> as Lowest Total Expenditures for Survey of Household Spending</p>
+            <div class="col-sm-12"><small><b>Health</b> as Highest Percent of Population Reporting General Health as Excellent or Great</small></div>
+            <div class="col-sm-12"><small><b>Leisure</b> as Highest Percent of Population Not Reporting Life Stress as Quite a Lot</small></div>
+            <div class="col-sm-12"><small><b>Affordability</b> as Lowest Total Expenditures for Survey of Household Spending</small></div>
         </section>
 
 
