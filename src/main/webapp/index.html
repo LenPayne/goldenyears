@@ -45,7 +45,7 @@
                     reported not having a lot of stress, and the average household 
                     spending is only ${{cities[0].cost}} per year.</p>
             </div>
-            <button class="btn btn-default" data-toggle="collapse" data-target="#resultList">See Complete List</button>
+            <button class="btn btn-default" data-toggle="collapse" data-target="#resultList" ng-click="expand=!expand">{{expand|expandFilter}}</button>
             <ul id="resultList" class="collapse list-group">
                 <li class="list-group-item" ng-repeat="city in cities| filter:query">
                     <h1>{{city.city}}</h1>                    

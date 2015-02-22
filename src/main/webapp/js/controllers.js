@@ -13,11 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+var EXPAND_TEXT = "<span class='glyphicon glyphicon-chevron-down'></span> See Complete List";
+var HIDE_TEXT = "<span class='glyphicon glyphicon-chevron-up'></span> Hide Complete List";
 
 var recApp = angular.module('recApp', ['ui.bootstrap-slider']);
 
 recApp.controller('RecCtrl', function ($scope, $http) {
+    $scope.expandText = EXPAND_TEXT;
+    $scope.expand = false;
     $scope.stress = 33;
     $scope.health = 33;
     $scope.cost = 33;    
@@ -33,3 +36,10 @@ recApp.controller('RecCtrl', function ($scope, $http) {
         });
     };
 });
+
+recApp.filter('expandFilter', function() {
+    return function (input) {
+        if (input) return HIDE_TEXT;
+        else return EXPAND_TEXT;
+    }
+})
