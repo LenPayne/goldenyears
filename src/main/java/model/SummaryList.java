@@ -117,7 +117,7 @@ public class SummaryList {
                     + -1 * (int) Math.round(getWeight(COST_MAX, COST_MIN, o2.getExpenses()) * costWeight);
             String output = String.format("%s: %d vs %s: %d", o1.getCity(), o1Weighted, o2.getCity(), o2Weighted);
             Logger.getLogger(getClass().getName()).log(Level.INFO, output);
-            return o1Weighted - o2Weighted;
+            return o2Weighted - o1Weighted;
         }
 
     }
