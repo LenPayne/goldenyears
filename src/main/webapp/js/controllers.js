@@ -26,8 +26,10 @@ recApp.controller('RecCtrl', function ($scope, $http) {
     $scope.cost = 33;
     $scope.predicate = '';
     $scope.reverse = false;
+    $scope.loaded = false;
     $http.get('q/recommendation').success(function (data) {
         $scope.cities = data;
+        $scope.loaded = true;
     });
 
     $scope.refresh = function () {
