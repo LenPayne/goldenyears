@@ -15,7 +15,7 @@
  */
 
 
-var recApp = angular.module('recApp', []);
+var recApp = angular.module('recApp', ['ui.bootstrap-slider']);
 
 recApp.controller('RecCtrl', function ($scope, $http) {
     $scope.stress = 33;
@@ -31,5 +31,5 @@ recApp.controller('RecCtrl', function ($scope, $http) {
         $http.get('q/recommendation/' + $scope.stress + '/' + $scope.health + '/' + $scope.cost).success(function (data) {
             $scope.cities = data;
         });
-    }
+    };
 });
