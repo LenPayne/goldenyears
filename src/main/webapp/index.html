@@ -23,7 +23,7 @@
                     reported not having a lot of stress, and the average household 
                     spending is only ${{(cities|filter:query)[0].expenses}} per year.</p>
             </div>
-            <div class="btn-group">
+            <div class="btn-group btn-group-justified col-sm-12">
                 <button class="btn btn-default" data-toggle="collapse" data-target="#options">Personalize Results</button>   
                 <button class="btn btn-default" data-toggle="collapse" data-target="#resultList" ng-click="expand = !expand"><span ng-class="expand | glyphFilter"></span>{{expand|expandFilter}}</button>
             </div>
