@@ -23,7 +23,7 @@
                     <th><span ng-click="predicate = 'expenses'; reverse=!reverse">Expenses</span></th>
                     <th><span ng-click="predicate = 'historicalExpenses'; reverse=!reverse">Historical Data</span></th>
                 </tr>
-                <tr ng-repeat="city in cities | filter:query | orderBy:predicate:reverse">
+                <tr ng-repeat="city in cities | filter:query">
                     <th>{{city.city}}</th>                    
                     <td>{{city.health}}</td>
                     <td>{{city.stress}}</td>
