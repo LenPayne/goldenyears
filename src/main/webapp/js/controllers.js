@@ -18,9 +18,18 @@
 var recApp = angular.module('recApp', []);
 
 recApp.controller('RecCtrl', function ($scope, $http) {
+    $scope.stress = 33;
+    $scope.health = 33;
+    $scope.cost = 33;    
     $scope.predicate = '';
     $scope.reverse = false;
     $http.get('q/recommendation').success(function (data) {
         $scope.cities = data;
     });
+
+    $scope.refresh = function () {
+        $http.get('q/recommendation/' + $scope.stress + '/' + $scope.health + '/' + $scope.cost).success(function (data) {
+            $scope.cities = data;
+        });
+    }
 });

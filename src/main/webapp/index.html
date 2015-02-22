@@ -14,7 +14,11 @@
     <body>
 
         <section class='container' ng-controller="RecCtrl">
-            <input ng-model="query" />
+            <p>Filter <input ng-model="query" /></p>
+            <p>Health <input type="range" min="0" max="100" ng-model="health" /></p>
+            <p>Leisure <input type="range" min="0" max="100" ng-model="stress" /></p>
+            <p>Affordability <input type="range" min="0" max="100" ng-model="cost" /></p>
+            <p><button value="Refresh Recommendations" ng-click="refresh()" /></p>
             <table class="table">
                 <tr>
                     <th><span ng-click="predicate = 'city'; reverse=!reverse">City</span></th>
